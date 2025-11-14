@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DecoVision</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 10px; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 1.5rem;">
+      <i class="bi bi-house-heart-fill" style="font-size: 2rem; color: #ffc107;"></i>
+      <div>
+        DECOVISION<br>
+        <small style="font-weight: 400; font-size: 0.9rem;">Redefine your space with smart décor</small>
+      </div>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('about') }}">About</a>
+        {% if 'user' in session %}
+            <span class="text-white" style="margin: 0 1rem;">Hi, {{ session['user'] }}</span>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('signup') }}">Signup</a>
+        {% endif %}
+    </nav>
+  </header>
+
+  <!-- Zigzag Section 1 -->
+  <section class="zigzag">
+    <div class="zigzag-content">
+      <h1>Find Your Perfect Décor</h1>
+      <p>Take our interactive quiz to uncover furniture styles that align seamlessly with your personal taste, room layout, and budget. Whether you're drawn to minimalism, bohemian charm, or a touch of luxury, we’ll help match your unique personality to the perfect décor solutions.<br>&nbsp;&nbsp;&nbsp;&nbsp;    
+      Our style quiz not only highlights your aesthetic preferences but also considers the spatial dynamics of your room. Upon completion, you'll receive carefully curated furniture recommendations sourced from both trusted local retailers and renowned international brands—each selected to suit your lifestyle, design goals, and budget. Let us help you bring your vision of a perfect living space to life.</p>
+     
+      <a href="{{ url_for('quiz') }}"><button>Start Quiz</button></a>
+    </div>
+    <div class="zigzag-image">
+      <img src="{{ url_for('static', filename='images/decor2.jpg') }}" alt="Quiz Decor">
+    </div>
+  </section>
+
+  <!-- Zigzag Section 2 -->
+  <section class="zigzag reverse">
+    <div class="zigzag-content">
+      <h1>Chat with IKEA Assistant</h1>
+      <p>Have questions about home décor or can't decide what to buy? Chat with our AI-powered IKEA assistant to get instant suggestions for any room. It understands your needs and recommends the best options available in the IKEA catalog.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;From selecting the right sofa for your living room to finding storage solutions for your bedroom, our bot can assist with personalized suggestions based on your taste, space, and budget. It’s like having your own interior designer at your fingertips!</p>
+      <a href="{{ url_for('chat') }}"><button>Chat Now</button></a>
+    </div>
+    <div class="zigzag-image">
+      <img src="{{ url_for('static', filename='images/decor3.jpg') }}" alt="IKEA Chat Assistant">
+    </div>
+  </section>
+
+  <!-- Zigzag Section 3 -->
+  <section class="zigzag">
+    <div class="zigzag-content">
+      <h1>Redefine Your Space</h1>
+      <p>Upload a photo of your room and let our AI reimagine your space with stunning design ideas. Choose your favorite themes, colors, or furniture styles and see the transformation come alive. Perfect for visualizing your dream home before buying anything.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;After visualizing your space, the best part is that you can shop for all the items directly from our platform. No need to go searching through different online stores—everything you need to bring your dream design to life is right here. Whether it’s cozy sofas, sleek coffee tables, or trendy lighting fixtures, we have everything you need to transform your home into a place of beauty and comfort.</p>
+      <a href="{{ url_for('redefine') }}"><button>Redefine</button></a>
+    </div>
+    <div class="zigzag-image">
+      <img src="{{ url_for('static', filename='images/living-room.jpg') }}" alt="Room Redesign">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Follow us on 
+      <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> | 
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
+    </p>
+    <p style="margin-top: 1rem;">Our website helps users find the perfect home décor and furniture using smart recommendations and AI chat. 
+      Explore products from Amazon and IKEA, and redefine your interiors with ease.</p>
+  </footer>
+
+</body>
+</html>

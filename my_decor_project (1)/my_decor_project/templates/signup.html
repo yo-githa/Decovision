@@ -1,0 +1,166 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup - DECOVISION</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url("/static/images/desigh.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    header, footer {
+      background-color:#343a40;
+      color: white;
+      padding: 1rem 2rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    header nav a:hover {
+      text-decoration: none;
+      color:#ffc107 ;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #ffc107;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    .centered-wrapper {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .glass-card {
+      background: rgba(189, 177, 177, 0.6);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .glass-card h2 {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    input.form-control {
+      background-color: rgba(255, 255, 255, 0.85);
+      border: none;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+    }
+
+    .input-group-text {
+      background-color: #ffffff;
+      border: none;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+      transform: scale(1.02);
+    }
+
+    a.text-warning:hover {
+      color: #ffc107cc;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 1.5rem;">
+      <i class="bi bi-house-heart-fill" style="font-size: 2rem; color: #ffc107;"></i>
+      <div>
+        DECOVISION<br>
+        <small style="font-weight: 400; font-size: 0.9rem;">Redefine your space with smart décor</small>
+      </div>
+    </div>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('signup') }}">Signup</a>
+    </nav>
+  </header>
+
+  <!-- Signup Form -->
+  <div class="centered-wrapper">
+    <div class="glass-card text-white">
+      <h2 class="text-center mb-4"><i class="bi bi-person-plus-fill"></i> Sign Up</h2>
+      <form action="{{ url_for('signup') }}" method="post">
+        <div class="mb-3 input-group">
+          <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+          <input type="text" name="name" class="form-control" placeholder="Full Name" required />
+        </div>
+        <div class="mb-3 input-group">
+          <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+          <input type="email" name="email" class="form-control" placeholder="Email Address" required />
+        </div>
+        <div class="mb-3 input-group">
+          <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+          <input type="password" name="password" class="form-control" placeholder="Password" required />
+        </div>
+        <div class="mb-3 input-group">
+          <span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
+          <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required />
+        </div>
+        <button type="submit" class="btn btn-success w-100">Create Account</button>
+        <p class="mt-3 text-center">Already have an account? <a href="{{ url_for('login') }}" class="text-warning">Login</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Follow us on 
+      <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> | 
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
+    </p>
+    <p style="margin-top: 1rem;">DECOVISION helps you personalize your home with AI-powered design recommendations.</p>
+  </footer>
+
+</body>
+</html>

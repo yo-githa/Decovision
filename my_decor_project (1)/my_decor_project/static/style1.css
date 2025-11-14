@@ -1,0 +1,130 @@
+/* General Layout */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: white;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: #ffc107;
+}
+
+a:hover {
+  color: #ffd95a;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: #343a40;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+header nav a {
+  margin-left: 20px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  background: #343a40;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+
+footer i {
+  margin-right: 5px;
+  color: #ffc107;
+}
+
+/* Buttons */
+button {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffc107;
+  color: #000;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffdb58;
+}
+
+/* Zigzag Sections */
+.zigzag {
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+  min-height: 80vh;
+}
+
+
+.zigzag.reverse {
+  flex-direction: row-reverse;
+}
+
+.zigzag-content {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centers content horizontally */
+  text-align: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.zigzag-content h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.zigzag-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 500px;
+  text-align: justify;
+}
+
+
+.zigzag-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.zigzag-image img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .zigzag {
+    flex-direction: column !important;
+    text-align: center;
+  }
+}

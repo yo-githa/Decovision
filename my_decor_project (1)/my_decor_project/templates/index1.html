@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DecoVision</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 10px; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 1.5rem;">
+      <i class="bi bi-house-heart-fill" style="font-size: 2rem; color: #ffc107;"></i>
+      <div>
+        DECOVISION<br>
+        <small style="font-weight: 400; font-size: 0.9rem;">Redefine your space with smart décor</small>
+      </div>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('about') }}">About</a>
+        {% if 'user' in session %}
+            <span class="text-white" style="margin: 0 1rem;">Hi, {{ session['user'] }}</span>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('signup') }}">Signup</a>
+        {% endif %}
+    </nav>
+
+
+  </header>
+
+  <!-- Hero Section: Recommendation Quiz -->
+  <section class="hero">
+    <h1>Find Your Perfect Décor</h1>
+    <p>Take our quiz and get personalized furniture recommendations tailored to your taste and space.</p>
+   <a href="{{ url_for('quiz') }}"><button>Start Quiz</button></a>
+
+  </section>
+
+  <!-- Chat with IKEA Section -->
+  <section class="chat-section">
+    <h1>Chat with IKEA Assistant</h1>
+    <p>Need suggestions? Talk to our smart IKEA bot to discover ideal furniture for every room.</p>
+    <a href="{{ url_for('chat') }}"><button>Chat Now</button></a>
+  </section>
+
+  <!-- Redefine Your Space Section -->
+  <section class="redefine-section">
+    <h1>Redefine Your Space</h1>
+    <p>Visualize and create your dream home with décor ideas powered by your imagination.</p>
+    <a href="{{ url_for('redefine') }}"><button>Redefine</button></a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Follow us on 
+      <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> | 
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
+    </p>
+    <p style="margin-top: 1rem;">Our website helps users find the perfect home décor and furniture using smart recommendations and AI chat. 
+      Explore products from Amazon and IKEA, and redefine your interiors with ease.</p>
+  </footer>
+
+</body>
+</html>

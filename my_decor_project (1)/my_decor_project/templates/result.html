@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recommendation Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, rgba(43, 88, 118, 0.7), rgba(78, 67, 118, 0.7)), 
+        url('/static/images/decor2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-blend-mode: overlay;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #343a40;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #ffc107;
+    }
+
+    header nav a {
+      color: #ffffff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover {
+      color: #ffc107;
+    }
+
+    .result-container {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+
+    h2 {
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .result-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .recommendation {
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .recommendation:hover {
+      transform: scale(1.03);
+    }
+
+    .recommendation img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .recommendation h4 {
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    .recommendation p {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn-custom {
+      padding: 10px 25px;
+      background-color: #ffc107;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #000;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-custom:hover {
+      background-color: #ffca2c;
+    }
+
+    img[alt="No Match"] {
+      border-radius: 15px;
+      max-width: 300px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background: #343a40;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #ccc;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ffc107;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="d-flex align-items-center gap-3">
+      <i class="bi bi-house-heart-fill" style="font-size: 2rem; color: #ffc107;"></i>
+      <div>
+        <div style="font-size: 1.6rem; font-weight: bold;">DECOVISION</div>
+        <div style="font-size: 0.9rem; font-weight: 400;">Redefine your space with smart décor</div>
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- Result Container -->
+  <div class="result-container text-center">
+    <h2>Your Top 2 Recommended Home Décor Styles</h2>
+
+    {% if styles and styles[0] != "No Match Found" %}
+    <div class="result-row">
+      {% for i in range(styles|length) %}
+      <div class="recommendation">
+        <h4>{{ styles[i] }}</h4>
+        <img src="{{ url_for('static', filename=images[i].split('static/')[1]) }}" alt="{{ styles[i] }}">
+        <p>
+          Based on your choice of 
+          <strong>{{ user_inputs.color }}</strong> color, 
+          <strong>{{ user_inputs.material }}</strong> material, 
+          <strong>{{ user_inputs.pattern }}</strong> pattern, 
+          and <strong>{{ user_inputs.lighting }}</strong> lighting, 
+          this style suits your taste!
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <h4>No Match Found</h4>
+      <img src="{{ url_for('static', filename='images/default.jpg') }}" alt="No Match">
+    {% endif %}
+
+    <div class="button-container">
+      <a href="{{ url_for('quiz') }}" class="btn-custom">🔁 Take Quiz Again</a>
+      <a href="{{ url_for('index') }}" class="btn-custom">🏠 Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Follow us on 
+      <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> | 
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
+    </p>
+    <p style="margin-top: 1rem;">DECOVISION helps you personalize your home with AI-powered design recommendations.</p>
+  </footer>
+
+</body>
+</html>
